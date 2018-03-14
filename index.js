@@ -35,8 +35,10 @@ app.get("/auth", login.auth());
 app.get("/callback", login.callback(
     (req, res, next, token_response) => {
         // 認証フロー成功時
-        res.json(token_response);
-    },(req, res, next, error) => {
+        login.get_friendship_status(token_response.access_token).then((response) => {
+            res.json(response);
+        })
+    }, (req, res, next, error) => {
         // 認証フロー失敗時
         res.status(400).json(error);
     }
