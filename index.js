@@ -39,3 +39,9 @@ app.get("/callback", login.callback(
         res.status(400).json(error);
     }
 ));
+
+app.use(express.static(__dirname + "/public"));
+app.set("view engine", "ejs");
+app.get("/", (req, res) => {
+    res.render(__dirname + "/index");
+})
