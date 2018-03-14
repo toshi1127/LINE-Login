@@ -18,7 +18,9 @@ app.use(session(session_options));
 const login = new line_login({
     channel_id: process.env.LINE_LOGIN_CHANNEL_ID,
     channel_secret: process.env.LINE_LOGIN_CHANNEL_SECRET,
-    callback_url: process.env.LINE_LOGIN_CALLBACK_URL
+    callback_url: process.env.LINE_LOGIN_CALLBACK_URL,
+    prompt: "consent", //既存の承認の有無に関係なく、承認するか尋ねるようになる。
+    bot_prompt: "aggressive"//Botの追加をしてもらいやすいように、UIが変わる
 });
 
 // サーバー起動設定。
